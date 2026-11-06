@@ -8,7 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Unzip project
-        run: unzip -o OfflineChat-step1.zip
+        run: |
+          unzip -o OfflineChat-step1.zip
+          for z in $(ls update-*.zip 2>/dev/null | sort -V); do unzip -o "$z"; done
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
